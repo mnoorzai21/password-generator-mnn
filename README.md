@@ -1,2 +1,4 @@
-# password-generator-mnn
-To code in javascript and generate a combination of random numbers character and special character password was amazing work for me. Besides the homework assignment I learned variables, functions, console my content, etc in this project. Now I can use this in my website and all my clients can take advantage of this. 
+HTML, CSS, and Javascript have been used in this project, which makes it possible to generate combinations of random passwords. At the beginning it asks the user to enter the length of the password they want to generate. After the user enters the password it is asking if the user wants lowercase letters, then uppercase letters, then special characters, and then the number. After the user chooses the categories it generates a random password. 
+
+https://mnoorzai21.github.io/password-generator-mnn/
+https://github.com/mnoorzai21/password-generator-mnn
