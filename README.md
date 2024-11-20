@@ -1,5 +1,5 @@
 # Random Password Generator
-HTML, CSS, and Javascript have been used in this project, which makes it possible to generate combinations of random passwords. At the beginning it asks the user to enter the length of the password they want to generate. After the user enters the password it is asking if the user wants lowercase letters, then uppercase letters, then special characters, and then the number. After the user chooses the categories it generates a random password. 
+Designed and implemented a JavaSript-based random password generator that creates secure, customizable passwords. The application prompts users to specify the desired password length and offers options to include lowercase letters, uppercase letters, special characters, and numbers. Based on the selected criteria, the program generates a strong, random password tailored to the user's preferences.
 
 ### Deployed Link
 https://mnoorzai21.github.io/password-generator-mnn/
