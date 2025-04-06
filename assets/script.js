@@ -1,68 +1,74 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
+// Generating my button
+const generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
+    
     // TODO: add code to generate the password here
-    var password = "";
-    var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-    var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var numbers = "0123456789";
-    var specialChars = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-    var candidates = "";
-    var length = 0;
-    var includeLower = false;
-    var includeUpper = false;
-    var includeSpecial = false;
-    var includeNumber = false;
-    var letter = "";
+    const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+    const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numbers = "0123456789";
+    const specialChars = "!@#$%^&*()_+{}[]|:;<>,.?/~`-=";
 
-    length = prompt("Please enter a length for your password ", "");
-    if (length < 8 || length > 128) {
-        alert("Password should be from 8 to 128 characters long. Please start over.");
+    let password = "";
+    let candidates = "";
+    
+    // Prompt user for password length
+    const lengthInput = prompt("Please enter a password length (8–128):", "");
+    const length = parseInt(lengthInput, 10)
+
+    if (isNaN(length) || length < 8 || length > 128) {
+        alert("Password length must be a number between 8 and 128.")
         return "";
     }
-    includeLower = confirm("Do you want to use the lowercase letters?");
-    if (includeLower) {
-        var randLowerCase = lowerCase[Math.floor(Math.random() * lowerCase.length)];
+   
+    // Character type confirmations
+    const includLower = confirm("Do you want to include lowercase letters?");
+    const includUpper = confirm("Do you want to include uppercase letters?");
+    const includSpecial = confirm("Do you want to include special characters?");
+    const includNumber = confirm("Do you want to include Numbers?");
+
+    // Ensure at lease one type of characters are selected
+    if (!includLower && !includUpper && !includSpecial && !includNumber) {
+        alert("You must choose at least one character type.")
+        return "Error: No character types selected.";
+    }
+    
+    // Helper function to get a random character from a string
+    const getRandomChar = (str) => str[Math.floor(Math.random() * str.length)];
+
+    // At least one character of each selected type
+    if (includLower) {
         candidates += lowerCase;
-        letter = randLowerCase;
-        password += letter;
+        password += getRandomChar(lowerCase);
     }
-    includeUpper = confirm("Do you want to use the uppercase letters?");
-    if (includeUpper) {
-        var randUpperCase = upperCase[Math.floor(Math.random() * upperCase.length)];
-        candidates += upperCase;
-        letter = randUpperCase;
-        password += letter;
+    if (includUpper) {
+        candidates += upperCase
+        password += getRandomChar(upperCase);
     }
-    includeSpecial = confirm("Do you want to use the special characters?");
-    if (includeSpecial) {
-        var randSpecialChar = specialChars[Math.floor(Math.random() * specialChars.length)];
+    if (includSpecial) {
         candidates += specialChars;
-        letter = randSpecialChar;
-        password += letter;
+        password += getRandomChar(specialChars);
     }
-    includeNumber = confirm("Do you want to use numbers?");
-    if (includeNumber) {
-        var randNumbers = numbers[Math.floor(Math.random() * numbers.length)];
-        candidates += numbers;
-        letter = randNumbers;
-        password += letter;
+    if (includNumber) {
+        candidates += numbers
+        password += getRandomChar(numbers);
     }
-    if (candidates.length === 0) {
-        alert("You must choose at least one character type.");
-        password = "Error: no character types selected. Please click on Generat Password button and choose a password with at least one character type."
-    }
+
+    // Fill the rest of the password length
     while (password.length < length) {
-        letter = candidates[Math.floor(Math.random() * candidates.length)];
-        password += letter;
+        password += getRandomChar(candidates);
     }
+
+    // Optionally shuffle password to avoid predictable order
+    password = password.split('').sort(() => 0.5 - Math.random()).join('');
+
     return password;
 }
+
 // Write password to the #password input
 function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
+    const password = generatePassword();
+    const passwordText = document.querySelector("#password");
     passwordText.value = password;
 }
 // Add event listener to generate button
